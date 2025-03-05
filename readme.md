@@ -3,7 +3,7 @@
 Welcome to my personal portfolio repository! This project showcases my work, skills, and projects in **web development, UI/UX design, and photography**. The portfolio is designed to be a modern, interactive, and visually appealing representation of my journey in technology and creativity.
 
 ## 🔗 Live Website
-[Visit My Portfolio]((https://portfolio-xi-ten-65.vercel.app/))
+[Visit My Portfolio](https://portfolio-xi-ten-65.vercel.app/)
 
 ## 📌 Features
 - 🌟 **Responsive Design** - Optimized for all devices
@@ -37,8 +37,8 @@ If you have suggestions for improvements, feel free to fork the repository, open
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## 🙌 Connect with Me
-- 🌐 [Website]((https://portfolio-xi-ten-65.vercel.app/))
-- 💼 [LinkedIn]((https://www.linkedin.com/in/vineet-sahoo-81b022311/))
-- 📷 [Instagram]((https://www.instagram.com/sahoo_era/))
+- 🌐 [Website](https://portfolio-xi-ten-65.vercel.app/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/vineet-sahoo-81b022311/)
+- 📷 [Instagram](https://www.instagram.com/sahoo_era/)
 
 Thank you for visiting my portfolio! 🚀
