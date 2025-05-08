@@ -472,19 +472,6 @@ const Home = () => {
                         </motion.li>
                       ))}
                     </ul>
-                    
-                    {/* Learn More Link */}
-                    <motion.div
-                      className="mt-6 border-t border-gray-100 pt-4"
-                      whileHover={{ x: 5 }}
-                    >
-                      <Link to="/services" className="flex items-center justify-between text-[#ff6700] font-medium group/link">
-                        <span>Learn more</span>
-                        <span className="w-6 h-6 rounded-full bg-[#ff6700]/10 flex items-center justify-center">
-                          <ArrowRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5" />
-                        </span>
-                      </Link>
-                    </motion.div>
                   </div>
                 </div>
               </motion.div>
