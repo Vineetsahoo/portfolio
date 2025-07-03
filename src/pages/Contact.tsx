@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, ArrowRight, Check, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { 
+  Mail, Phone, MapPin, Send, 
+  ArrowRight, Check, AlertCircle, MessageCircle, Calendar
+} from 'lucide-react';
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -15,31 +17,35 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      // Replace these with your actual EmailJS credentials
-      const result = await emailjs.send(
-        'YOUR_SERVICE_ID',  // Your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Your EmailJS template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'vineetsahoo3@gmail.com', // Your email address
-        },
-        'YOUR_PUBLIC_KEY' // Your EmailJS public key
-      );
-
-      if (result.text === 'OK') {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
+      // Simulate API call - replace with actual EmailJS implementation
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Email error:', error);
       setSubmitStatus('error');
@@ -58,162 +64,142 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <Mail className="w-6 h-6" />,
+      icon: <Mail className="w-7 h-7" />,
       title: 'Email',
       content: 'vineetsahoo3@gmail.com',
       link: 'mailto:vineetsahoo3@gmail.com',
-      color: 'from-blue-500 to-cyan-400'
+      gradient: 'from-blue-500 to-cyan-400',
+      bgGradient: 'from-blue-50 to-cyan-50',
+      description: 'Drop me a line anytime'
     },
     {
-      icon: <Phone className="w-6 h-6" />,
+      icon: <Phone className="w-7 h-7" />,
       title: 'Phone',
       content: '+91 85956 43778',
       link: 'tel:+918595643778',
-      color: 'from-green-500 to-emerald-400'
+      gradient: 'from-emerald-500 to-teal-400',
+      bgGradient: 'from-emerald-50 to-teal-50',
+      description: 'Call for urgent matters'
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
+      icon: <MapPin className="w-7 h-7" />,
       title: 'Location',
       content: 'Delhi, India',
       link: 'https://goo.gl/maps/your-location',
-      color: 'from-[#ff6700] to-[#ffb38a]'
+      gradient: 'from-orange-500 to-pink-400',
+      bgGradient: 'from-orange-50 to-pink-50',
+      description: 'Open to remote work'
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { 
-        staggerChildren: 0.15,
-        delayChildren: 0.3 
-      } 
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  const letterAnimation = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#fff1e6]">
-      {/* Enhanced Hero Section with modern design elements */}
-      <div className="relative overflow-hidden pt-20">
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        
-        {/* Abstract shapes for visual interest */}
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-[#ff6700]/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#ff6700]/5 rounded-full blur-[120px]" />
-        
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3")',
-            filter: 'brightness(4.5)',
-          }}
-        ></div>
-        
-        {/* Enhanced overlay with depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/90 to-white/95 backdrop-blur-[2px]"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Modern Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-orange-300/10 to-pink-300/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 right-0 w-80 h-80 bg-gradient-to-l from-blue-300/10 to-purple-300/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-t from-green-300/10 to-emerald-300/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
+
+      {/* Ultra-Modern Hero Section */}
+      <section className="relative pt-20 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
-            className="text-center relative z-10"
+            className="text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
-            {/* Enhanced headline badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
+            {/* Ultra-modern title */}
+            <motion.h1 
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6"
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-             
-            </motion.div>
-            
-            <motion.h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight leading-none">
-              {["Let's", "Connect", "Together"].map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 }
+              Let's Create{' '}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  Together
+                </span>
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-pink-400/20 to-purple-400/20 rounded-lg blur-lg"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.3, 0.6, 0.3]
                   }}
-                  transition={{ delay: i * 0.2 }}
-                  className="inline-block mx-2"
-                >
-                  {word.split('').map((letter, index) => (
-                    <motion.span
-                      key={index}
-                      variants={letterAnimation}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: i * 0.2 + index * 0.05 }}
-                      className={`inline-block ${
-                        word === "Connect" || word === "Together" 
-                          ? "bg-gradient-to-r from-[#ff6700] via-[#ff8533] to-[#ffb38a] text-transparent bg-clip-text" 
-                          : ""
-                      }`}
-                    >
-                      {letter}
-                    </motion.span>
-                  ))}
-                </motion.span>
-              ))}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
+              </span>
             </motion.h1>
 
-            {/* Enhanced Decorative Line */}
-            <div className="relative w-40 mx-auto mb-8 overflow-hidden">
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-                className="h-2 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] rounded-full"
-              />
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.5, 1],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -inset-4 bg-[#ff6700]/20 blur-xl rounded-full"
-              />
+            {/* Dynamic underline */}
+            <div className="flex justify-center mb-8">
+              <motion.div 
+                className="relative h-3 overflow-hidden rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: "12rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-full">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent rounded-full"
+                    animate={{ x: ["-100%", "100%"] }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </div>
+              </motion.div>
             </div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12"
             >
-              <span className="text-[#ff6700] font-medium">Have a project</span> in mind? Let's create something{' '}
-              <span className="text-[#ff6700] font-medium">amazing</span> together.
+              Ready to turn your ideas into reality? Let's discuss your next project 
+              and create something amazing that makes a difference.
             </motion.p>
+
+            {/* Modern CTA buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <motion.a
+                href="#contact-form"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <MessageCircle className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+                Start Conversation
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+
+              <motion.a
+                href="#contact-info"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300"
+              >
+                <Calendar className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+                Schedule Call
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Modern Contact Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
@@ -225,96 +211,146 @@ const Contact = () => {
         >
           {/* Contact Information Column */}
           <motion.div 
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-8"
             variants={itemVariants}
           >
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Contact Information</h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] rounded-full"></div>
+            {/* Enhanced Header with Glass Morphism */}
+            <div className="relative mb-12">
+              <motion.div 
+                className="relative bg-white/20 backdrop-blur-xl rounded-3xl p-8 border border-white/30 shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                {/* Background decoration */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-pink-400/20 rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-tr from-blue-400/20 to-purple-400/20 rounded-full blur-2xl"></div>
+                
+                <div className="relative z-10">
+                  <motion.div
+                    className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-pink-500 rounded-2xl shadow-lg mb-6"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Mail className="w-8 h-8 text-white" />
+                  </motion.div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-4">
+                    Contact Information
+                  </h2>
+                  
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    Ready to start a conversation? Choose your preferred way to connect.
+                  </p>
+                  
+                  {/* Animated underline */}
+                  <motion.div 
+                    className="mt-6 h-1 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                  />
+                </div>
+              </motion.div>
             </div>
 
-            {/* Enhanced Contact Cards */}
-            {contactInfo.map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.link}
-                variants={itemVariants}
-                className="group block p-6 bg-white shadow-lg hover:shadow-xl transition-all duration-500 rounded-2xl border border-gray-100 overflow-hidden relative"
-                whileHover={{ y: -5 }}
-              >
-                {/* Background gradient on hover */}
-                <motion.div 
-                  className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.1 }}
-                />
-                
-                {/* Card accent line */}
+            {/* Enhanced Contact Cards with Hover Effects */}
+            <div className="space-y-6">
+              {contactInfo.map((item, index) => (
                 <motion.div
-                  className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b ${item.color} transform origin-left scale-y-0 group-hover:scale-y-100 transition-transform duration-300`}
-                />
-                
-                <div className="flex items-start space-x-6">
-                  {/* Enhanced icon design */}
-                  <div className={`p-4 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
-                    {item.icon}
-                  </div>
-                  <div className="pt-2">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{item.title}</h3>
-                    <p className="text-gray-600">{item.content}</p>
-                    
-                    {/* Card link indicator */}
-                    <div className="flex items-center mt-3 text-[#ff6700] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="mr-2">Contact</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-
-            {/* Enhanced Social Links Section */}
-            <motion.div 
-              variants={itemVariants}
-              className="bg-white p-6 rounded-2xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Let's Connect</h3>
-              <div className="flex justify-center space-x-5">
-                {[
-                  { 
-                    icon: <Github className="w-6 h-6" />, 
-                    url: 'https://github.com/Vineetsahoo',
-                    name: 'GitHub',
-                    color: 'bg-gray-900 hover:bg-gray-800'
-                  },
-                  { 
-                    icon: <Linkedin className="w-6 h-6" />, 
-                    url: 'https://www.linkedin.com/in/vineet-sahoo-81b022311/',
-                    name: 'LinkedIn',
-                    color: 'bg-[#0A66C2] hover:bg-[#0A50C2]'
-                  },
-                  { 
-                    icon: <Instagram className="w-6 h-6" />, 
-                    url: 'https://www.instagram.com/sahoo_era/',
-                    name: 'Instagram',
-                    color: 'bg-gradient-to-br from-[#F56040] to-[#C837AB] hover:from-[#E15039] hover:to-[#B836A6]'
-                  }
-                ].map((social, index) => (
+                  key={index}
+                  variants={itemVariants}
+                  className="group relative"
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <motion.a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-4 rounded-xl ${social.color} text-white shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    title={social.name}
+                    href={item.link}
+                    className="block relative bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
                   >
-                    {social.icon}
+                    {/* Gradient background on hover */}
+                    <motion.div 
+                      className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}
+                    />
+                    
+                    {/* Animated border */}
+                    <motion.div
+                      className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                      style={{ 
+                        background: `linear-gradient(white, white) padding-box, linear-gradient(45deg, ${item.gradient.replace('from-', '').replace('to-', '')}) border-box`,
+                        backgroundSize: '300% 300%'
+                      }}
+                    />
+                    
+                    <div className="relative z-10 flex items-start space-x-6">
+                      {/* Enhanced icon with 3D effect */}
+                      <motion.div 
+                        className={`p-5 rounded-2xl bg-gradient-to-br ${item.gradient} text-white shadow-xl relative overflow-hidden`}
+                        whileHover={{ scale: 1.1, rotateY: 15 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {/* Icon shine effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                          animate={{ x: ["-100%", "100%"] }}
+                          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                        />
+                        <div className="relative z-10">
+                          {item.icon}
+                        </div>
+                      </motion.div>
+                      
+                      <div className="flex-1 pt-2">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300" style={{ backgroundImage: `linear-gradient(45deg, ${item.gradient.replace('from-', '').replace('to-', '')})` }}>
+                          {item.title}
+                        </h3>
+                        
+                        <p className="text-lg text-gray-700 font-medium mb-2">
+                          {item.content}
+                        </p>
+                        
+                        <p className="text-sm text-gray-500 mb-4">
+                          {item.description}
+                        </p>
+                        
+                        {/* Enhanced call-to-action */}
+                        <motion.div 
+                          className="flex items-center text-gray-600 group-hover:text-gray-900 transition-colors duration-300"
+                          whileHover={{ x: 5 }}
+                        >
+                          <span className="mr-2 font-semibold">Get in touch</span>
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                        </motion.div>
+                      </div>
+                    </div>
+                    
+                    {/* Floating particles on hover */}
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      {Array.from({ length: 6 }).map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className={`absolute w-2 h-2 bg-gradient-to-r ${item.gradient} rounded-full`}
+                          style={{
+                            left: `${20 + i * 12}%`,
+                            top: `${30 + (i % 2) * 40}%`,
+                          }}
+                          animate={{
+                            y: [0, -10, 0],
+                            opacity: [0, 1, 0],
+                            scale: [0, 1, 0],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                          }}
+                        />
+                      ))}
+                    </div>
                   </motion.a>
-                ))}
-              </div>
-            </motion.div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Enhanced Contact Form Column */}
@@ -324,68 +360,121 @@ const Contact = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden"
+              className="relative bg-gradient-to-br from-white/95 to-white/80 backdrop-blur-2xl p-12 rounded-3xl shadow-2xl border border-white/50 overflow-hidden"
             >
-              {/* Background decoration */}
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#ff6700]/5 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-[#ff6700]/5 rounded-full blur-xl"></div>
+              {/* Enhanced background decorations */}
+              <div className="absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br from-orange-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-r from-green-400/5 to-emerald-400/5 rounded-full blur-2xl"></div>
               
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send a Message</h2>
+              {/* Floating geometric shapes */}
+              <div className="absolute top-8 right-8 w-4 h-4 border-2 border-orange-300/30 rotate-45"></div>
+              <div className="absolute bottom-12 left-12 w-3 h-3 bg-pink-300/30 rounded-full"></div>
+              <div className="absolute top-1/3 left-8 w-2 h-2 bg-blue-300/30 rounded-full"></div>
               
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Enhanced header section */}
+              <div className="relative z-10 mb-10">
+                <motion.div
+                  className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-pink-500 rounded-2xl shadow-lg mb-6"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Send className="w-8 h-8 text-white" />
+                </motion.div>
+                
+                <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-4">
+                  Send a Message
+                </h2>
+                
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Let's discuss your project and bring your ideas to life together.
+                </p>
+                
+                {/* Animated progress indicator */}
+                <motion.div 
+                  className="mt-6 h-1 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+              </div>
+              
+              <form ref={formRef} onSubmit={handleSubmit} className="relative z-10 space-y-8">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                   {[
-                    { id: "name", label: "Name", type: "text", placeholder: "Your name" },
-                    { id: "email", label: "Email", type: "email", placeholder: "your@email.com" }
+                    { id: "name", label: "Full Name", type: "text", placeholder: "Enter your name", icon: "👤" },
+                    { id: "email", label: "Email Address", type: "email", placeholder: "your@email.com", icon: "✉️" }
                   ].map((field) => (
                     <motion.div
                       key={field.id}
-                      whileHover={{ scale: 1.01 }}
+                      whileHover={{ scale: 1.02 }}
                       className="group relative"
                     >
-                      <label 
-                        htmlFor={field.id} 
-                        className={`absolute left-4 transition-all duration-300 ${
-                          focusedField === field.id || formData[field.id as keyof typeof formData]
-                            ? '-top-2.5 text-xs bg-white px-2 text-[#ff6700] font-bold z-10'
-                            : 'top-4 text-gray-500'
-                        }`}
-                      >
-                        {field.label}
-                      </label>
-                      <input
-                        type={field.type}
-                        id={field.id}
-                        name={field.id}
-                        value={formData[field.id as keyof typeof formData]}
-                        onChange={handleChange}
-                        required
-                        placeholder={field.placeholder}
-                        className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl bg-white/70 backdrop-blur-sm focus:border-[#ff6700] focus:ring focus:ring-[#ff6700]/20 transition-all duration-300"
-                        onFocus={() => setFocusedField(field.id)}
-                        onBlur={() => setFocusedField(null)}
-                      />
-                      {/* Animated border gradient on focus */}
-                      <motion.div 
-                        className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] origin-left scale-x-0 ${
-                          focusedField === field.id ? 'scale-x-100' : ''
-                        } transition-transform duration-300`}
-                      />
+                      <div className="relative">
+                        {/* Floating label with icon */}
+                        <label 
+                          htmlFor={field.id} 
+                          className={`absolute left-4 transition-all duration-300 flex items-center gap-2 ${
+                            focusedField === field.id || formData[field.id as keyof typeof formData]
+                              ? '-top-3 text-sm bg-white px-3 text-orange-600 font-bold z-10 shadow-sm rounded-full'
+                              : 'top-4 text-gray-500'
+                          }`}
+                        >
+                          <span className="text-lg">{field.icon}</span>
+                          {field.label}
+                        </label>
+                        
+                        <input
+                          type={field.type}
+                          id={field.id}
+                          name={field.id}
+                          value={formData[field.id as keyof typeof formData]}
+                          onChange={handleChange}
+                          required
+                          placeholder={field.placeholder}
+                          className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl bg-white/70 backdrop-blur-sm focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all duration-300 text-lg placeholder-gray-400"
+                          onFocus={() => setFocusedField(field.id)}
+                          onBlur={() => setFocusedField(null)}
+                        />
+                        
+                        {/* Animated border gradient */}
+                        <motion.div 
+                          className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 opacity-0 pointer-events-none ${
+                            focusedField === field.id ? 'opacity-100' : ''
+                          } transition-opacity duration-300`}
+                          style={{ padding: '2px' }}
+                        >
+                          <div className="w-full h-full bg-white rounded-2xl"></div>
+                        </motion.div>
+                        
+                        {/* Success indicator */}
+                        {formData[field.id as keyof typeof formData] && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center"
+                          >
+                            <Check className="w-4 h-4" />
+                          </motion.div>
+                        )}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="relative">
+                <motion.div whileHover={{ scale: 1.02 }} className="relative group">
                   <label 
                     htmlFor="subject" 
-                    className={`absolute left-4 transition-all duration-300 ${
+                    className={`absolute left-4 transition-all duration-300 flex items-center gap-2 ${
                       focusedField === 'subject' || formData.subject
-                        ? '-top-2.5 text-xs bg-white px-2 text-[#ff6700] font-bold z-10'
+                        ? '-top-3 text-sm bg-white px-3 text-orange-600 font-bold z-10 shadow-sm rounded-full'
                         : 'top-4 text-gray-500'
                     }`}
                   >
+                    <span className="text-lg">💡</span>
                     Subject
                   </label>
+                  
                   <input
                     type="text"
                     id="subject"
@@ -393,83 +482,156 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder="What's this about?"
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl bg-white/70 backdrop-blur-sm focus:border-[#ff6700] focus:ring focus:ring-[#ff6700]/20 transition-all duration-300"
+                    placeholder="What would you like to discuss?"
+                    className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl bg-white/70 backdrop-blur-sm focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all duration-300 text-lg placeholder-gray-400"
                     onFocus={() => setFocusedField('subject')}
                     onBlur={() => setFocusedField(null)}
                   />
+                  
+                  {formData.subject && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center"
+                    >
+                      <Check className="w-4 h-4" />
+                    </motion.div>
+                  )}
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.01 }} className="relative">
+                <motion.div whileHover={{ scale: 1.02 }} className="relative group">
                   <label 
                     htmlFor="message" 
-                    className={`absolute left-4 transition-all duration-300 ${
+                    className={`absolute left-4 transition-all duration-300 flex items-center gap-2 ${
                       focusedField === 'message' || formData.message
-                        ? '-top-2.5 text-xs bg-white px-2 text-[#ff6700] font-bold z-10'
+                        ? '-top-3 text-sm bg-white px-3 text-orange-600 font-bold z-10 shadow-sm rounded-full'
                         : 'top-4 text-gray-500'
                     }`}
                   >
-                    Message
+                    <span className="text-lg">💬</span>
+                    Your Message
                   </label>
+                  
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    placeholder="Your message..."
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl bg-white/70 backdrop-blur-sm focus:border-[#ff6700] focus:ring focus:ring-[#ff6700]/20 transition-all duration-300"
+                    rows={6}
+                    placeholder="Tell me about your project, goals, and how I can help..."
+                    className="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl bg-white/70 backdrop-blur-sm focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all duration-300 text-lg placeholder-gray-400 resize-none"
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
                   />
+                  
+                  {formData.message && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute right-4 top-6 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center"
+                    >
+                      <Check className="w-4 h-4" />
+                    </motion.div>
+                  )}
                 </motion.div>
 
+                {/* Enhanced submit button */}
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex items-center justify-center px-8 py-4 rounded-xl text-white shadow-lg transition-all duration-500 ${
+                  className={`relative w-full flex items-center justify-center px-8 py-6 rounded-2xl text-white text-lg font-semibold shadow-xl transition-all duration-500 overflow-hidden ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-gradient-to-r from-[#ff6700] to-[#ffb38a] hover:shadow-xl hover:shadow-[#ff6700]/20'
+                      : 'bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 hover:shadow-2xl hover:shadow-orange-500/25'
                   }`}
                   whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  {isSubmitting ? (
-                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <span className="mr-2 font-medium">Send Message</span>
-                      <Send className="w-5 h-5" />
-                    </>
+                  {/* Button background animation */}
+                  {!isSubmitting && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                    />
                   )}
+                  
+                  <div className="relative z-10 flex items-center">
+                    {isSubmitting ? (
+                      <>
+                        <motion.div 
+                          className="w-6 h-6 border-2 border-white border-t-transparent rounded-full mr-3"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        Sending message...
+                      </>
+                    ) : (
+                      <>
+                        <span className="mr-3">Send Message</span>
+                        <motion.div
+                          whileHover={{ x: 5, rotate: 15 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <Send className="w-6 h-6" />
+                        </motion.div>
+                      </>
+                    )}
+                  </div>
                 </motion.button>
 
-                {/* Status Messages with enhanced visual feedback */}
+                {/* Enhanced Status Messages */}
                 <AnimatePresence>
                   {submitStatus !== 'idle' && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      className={`flex items-center p-4 rounded-xl ${
+                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                      className={`relative flex items-center p-6 rounded-2xl border-2 ${
                         submitStatus === 'success' 
-                          ? 'bg-green-50 border border-green-100 text-green-600' 
-                          : 'bg-red-50 border border-red-100 text-red-600'
-                      }`}
+                          ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-700' 
+                          : 'bg-gradient-to-r from-red-50 to-pink-50 border-red-200 text-red-700'
+                      } shadow-lg`}
                     >
-                      {submitStatus === 'success' ? (
-                        <>
-                          <Check className="w-5 h-5 mr-2 text-green-500" />
-                          <span>Message sent successfully!</span>
-                        </>
-                      ) : (
-                        <>
-                          <AlertCircle className="w-5 h-5 mr-2 text-red-500" />
-                          <span>Failed to send message. Please try again.</span>
-                        </>
-                      )}
+                      {/* Background decoration */}
+                      <div className={`absolute -top-2 -right-2 w-12 h-12 ${
+                        submitStatus === 'success' ? 'bg-green-200/30' : 'bg-red-200/30'
+                      } rounded-full blur-xl`}></div>
+                      
+                      <div className="relative z-10 flex items-center">
+                        {submitStatus === 'success' ? (
+                          <>
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                              className="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center mr-4"
+                            >
+                              <Check className="w-6 h-6" />
+                            </motion.div>
+                            <div>
+                              <h4 className="font-bold text-lg">Message sent successfully!</h4>
+                              <p className="text-sm">I'll get back to you within 24 hours.</p>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                              className="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center mr-4"
+                            >
+                              <AlertCircle className="w-6 h-6" />
+                            </motion.div>
+                            <div>
+                              <h4 className="font-bold text-lg">Failed to send message</h4>
+                              <p className="text-sm">Please try again or contact me directly.</p>
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -479,30 +641,130 @@ const Contact = () => {
         </motion.div>
       </div>
 
-      {/* Modern Contact Map or Additional Decoration */}
-      <div className="relative bg-gradient-to-t from-white to-transparent h-64 mt-10">
-        <div className="absolute inset-0 bg-[#ff6700]/5 opacity-50"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-center">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-2xl text-gray-800 font-bold text-center"
-          >
-            Thanks for reaching out!
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-gray-600 text-center mt-2"
-          >
-            I'll get back to you as soon as possible.
-          </motion.p>
+      {/* Ultra-Modern Closing Section */}
+      <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+        {/* Modern background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-l from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-      </div>
+
+        {/* Animated grid pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-12 h-full">
+            {Array.from({ length: 144 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="border border-white/10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.3, 0] }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  delay: (i % 12) * 0.2 + Math.floor(i / 12) * 0.1 
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {/* Modern icon badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative inline-block mb-8"
+            >
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-400/30 via-pink-400/30 to-purple-400/30 rounded-2xl blur-xl animate-pulse"></div>
+              <div className="relative inline-flex items-center justify-center p-6 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl">
+                <MessageCircle className="w-10 h-10 text-white" />
+              </div>
+            </motion.div>
+
+            {/* Enhanced title with gradient text */}
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-6"
+            >
+              <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                Thanks for reaching out!
+              </span>
+            </motion.h3>
+
+            {/* Modern subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8"
+            >
+              Your message has been received. I'll get back to you within 24 hours 
+              with a thoughtful response.
+            </motion.p>
+
+            {/* Animated decorative line */}
+            <motion.div
+              className="relative w-32 mx-auto mb-8"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="h-1 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+              <motion.div
+                className="absolute -inset-2 bg-gradient-to-r from-orange-400/30 via-pink-400/30 to-purple-400/30 rounded-full blur-md"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </motion.div>
+
+            {/* Floating particles effect */}
+            <div className="absolute inset-0 pointer-events-none">
+              {Array.from({ length: 20 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white/20 rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };

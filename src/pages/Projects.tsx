@@ -123,42 +123,31 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#fff1e6]">
-      {/* Enhanced Hero Section */}
-      <div className="relative overflow-hidden pt-20 pb-12">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#ff6700]/10 to-[#ffb38a]/10"></div>
-          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-          {/* Enhanced background with parallax effect */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Ultra-Modern Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-orange-300/10 to-pink-300/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 right-0 w-80 h-80 bg-gradient-to-l from-blue-300/10 to-purple-300/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-t from-green-300/10 to-emerald-300/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
+      
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+      {/* Ultra-Modern Hero Section */}
+      <div className="relative overflow-hidden pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&h=800&fit=crop')",
-            }}
-            animate={{ 
-              scale: [1, 1.05, 1],
-              opacity: [0.1, 0.15, 0.1] 
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          ></motion.div>
-        </div>
-        <motion.div 
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="text-center relative z-20">
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-3"
-            >
-            </motion.div>
-            
+            className="text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Ultra-modern title */}
             <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 relative tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               {["My", "Creative", "Portfolio"].map((word, i) => (
                 <motion.span
@@ -180,7 +169,7 @@ const Projects = () => {
                       animate="visible"
                       transition={{ delay: i * 0.2 + index * 0.05 }}
                       className={`inline-block ${
-                        word === "Portfolio" ? "text-[#ff6700]" : ""
+                        word === "Portfolio" ? "bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent" : ""
                       }`}
                     >
                       {letter}
@@ -190,55 +179,73 @@ const Projects = () => {
               ))}
             </motion.h1>
 
-            {/* Enhanced Decorative Line */}
-            <div className="relative w-32 mx-auto mb-8">
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-                className="h-2 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] rounded-full"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -inset-4 bg-[#ff6700]/20 blur-xl rounded-full"
-              />
+            {/* Dynamic underline */}
+            <div className="flex justify-center mb-8">
+              <motion.div 
+                className="relative h-3 overflow-hidden rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: "12rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-full">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent rounded-full"
+                    animate={{ x: ["-100%", "100%"] }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </div>
+              </motion.div>
             </div>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-0"
             >
-              <span className="text-[#ff6700] font-medium">Exploring</span> creativity through{' '}
-              <span className="text-[#ff6700] font-medium">code</span> and design
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">Exploring</span> creativity through{' '}
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">innovative code</span> and design
             </motion.p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mb-12">
-        {/* Category Filter */}
+      {/* Modern Projects Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        {/* Ultra-Modern Category Filter */}
         <motion.div 
-          className="flex flex-wrap justify-center mb-8 gap-2"
+          className="flex flex-wrap justify-center mb-16 gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.2 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           {categories.map((category) => (
             <motion.button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`relative px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-300 overflow-hidden ${
                 activeFilter === category
-                  ? 'bg-[#ff6700] text-white shadow-md shadow-[#ff6700]/20'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
+                  ? 'text-white shadow-lg shadow-orange-500/25'
+                  : 'bg-white/80 backdrop-blur-sm text-gray-600 hover:bg-white border border-gray-200 hover:shadow-lg'
               }`}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {/* Active gradient background */}
+              {activeFilter === category && (
+                <motion.div
+                  layoutId="activeCategory"
+                  className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500"
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </span>
             </motion.button>
           ))}
         </motion.div>
@@ -280,39 +287,42 @@ const Projects = () => {
                     key={project.id}
                     layout
                     variants={itemVariants}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
-                    whileHover={{ y: -5 }}
+                    className="group relative bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                    whileHover={{ y: -8 }}
                   >
-                    {/* Enhanced Project Card Design */}
+                    {/* Ultra-modern Project Card Design */}
                     <div className="relative overflow-hidden aspect-video">
+                      {/* Gradient overlay */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 z-10"
-                        initial={{ opacity: 0.3 }}
-                        whileHover={{ opacity: 0.7 }}
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"
+                        initial={{ opacity: 0.4 }}
+                        whileHover={{ opacity: 0.8 }}
                         transition={{ duration: 0.3 }}
                       />
+                      
+                      {/* Image with enhanced hover effect */}
                       <motion.img
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
                         initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.6 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.8 }}
                       />
                       
-                      {/* Project links overlay */}
-                      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="flex gap-3">
+                      {/* Modern project links overlay */}
+                      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <div className="flex gap-4">
                           {project.liveUrl && (
                             <motion.a
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-3 bg-white rounded-lg hover:bg-[#ff6700] text-gray-900 hover:text-white transition-colors flex gap-2 items-center shadow-lg"
-                              whileHover={{ scale: 1.05 }}
+                              className="px-6 py-3 bg-white/90 backdrop-blur-md rounded-2xl hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-500 text-gray-900 hover:text-white transition-all duration-300 flex gap-2 items-center shadow-lg font-medium"
+                              whileHover={{ scale: 1.05, y: -2 }}
                               whileTap={{ scale: 0.95 }}
                             >
-                              <span className="font-medium">Live Demo</span>
+                              <span>Live Demo</span>
                               <ArrowUpRight className="w-4 h-4" />
                             </motion.a>
                           )}
@@ -321,50 +331,64 @@ const Projects = () => {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-3 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-[#ff6700] text-gray-900 hover:text-white transition-colors flex gap-2 items-center shadow-lg"
-                              whileHover={{ scale: 1.05 }}
+                              className="px-6 py-3 bg-white/70 backdrop-blur-md rounded-2xl hover:bg-gray-900 text-gray-900 hover:text-white transition-all duration-300 flex gap-2 items-center shadow-lg font-medium"
+                              whileHover={{ scale: 1.05, y: -2 }}
                               whileTap={{ scale: 0.95 }}
                             >
-                              <span className="font-medium">Code</span>
+                              <span>Code</span>
                               <Github className="w-4 h-4" />
                             </motion.a>
                           )}
                         </div>
                       </div>
                       
-                      {/* Category badge */}
-                      <div className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-xs font-medium capitalize shadow-md">
+                      {/* Enhanced category badge */}
+                      <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-md text-gray-800 px-4 py-2 rounded-full text-xs font-semibold capitalize shadow-lg border border-gray-200">
                         {project.category}
                       </div>
                       
+                      {/* Featured badge with glow effect */}
                       {project.featured && (
-                        <div className="absolute top-4 left-4 z-10 bg-[#ff6700] text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg shadow-[#ff6700]/30">
-                          Featured
-                        </div>
+                        <motion.div 
+                          className="absolute top-4 left-4 z-10 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+                          animate={{ 
+                            boxShadow: [
+                              '0 0 0 rgba(255, 103, 0, 0.5)', 
+                              '0 0 20px rgba(255, 103, 0, 0.8)', 
+                              '0 0 0 rgba(255, 103, 0, 0.5)'
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          ✨ New
+                        </motion.div>
                       )}
                     </div>
                     
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#ff6700] transition-colors">
+                    {/* Enhanced content section */}
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-300">
                         {project.title}
                       </h3>
-                      <p className="text-gray-600 mb-5 line-clamp-2 text-sm md:text-base">{project.description}</p>
+                      <p className="text-gray-600 mb-6 line-clamp-2 text-base leading-relaxed">{project.description}</p>
                       
+                      {/* Enhanced tech stack */}
                       <div className="flex flex-wrap gap-2 mt-auto">
                         {project.technologies.map((tech, index) => (
-                          <span
+                          <motion.span
                             key={index}
-                            className="px-3 py-1 bg-gray-100/70 text-gray-700 rounded-full text-xs font-medium hover:bg-[#ff6700]/10 hover:text-[#ff6700] transition-colors cursor-default"
+                            className="px-3 py-1.5 bg-gray-100/80 backdrop-blur-sm text-gray-700 rounded-full text-xs font-medium hover:bg-gradient-to-r hover:from-orange-100 hover:to-pink-100 hover:text-orange-600 transition-all duration-300 cursor-default border border-gray-200"
+                            whileHover={{ scale: 1.05 }}
                           >
                             {tech}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
                     
-                    {/* Bottom color bar - subtle design element */}
+                    {/* Modern bottom gradient bar */}
                     <motion.div 
-                      className="h-1 w-0 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] group-hover:w-full transition-all duration-300"
+                      className="h-1 w-0 bg-gradient-to-r from-orange-500 to-pink-500 group-hover:w-full transition-all duration-500"
                       initial={{ width: "0%" }}
                       whileHover={{ width: "100%" }}
                     />

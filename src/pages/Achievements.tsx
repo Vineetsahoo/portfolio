@@ -7,7 +7,6 @@ import {
   ExternalLink,
   ChevronRight,
   Eye,
-  Check,
   Download
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -19,7 +18,6 @@ const Achievements = () => {
   const [imageError, setImageError] = useState<boolean>(false);
   const [selectedCert, setSelectedCert] = useState<any>(null);
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("professional");
 
   const handleCertificateView = (cert: any) => {
     if (cert.src?.endsWith('.pdf')) {
@@ -67,28 +65,6 @@ const Achievements = () => {
         src: "/eCertificate.pdf",
         type: "pdf"
       }
-    ],
-    badges: [
-      {
-        icon: <Award className="w-6 h-6" />,
-        title: "AWS Cloud Champion",
-        organization: "Amazon Web Services",
-        date: "2024",
-        badgeUrl: "/aws-badge.png",
-        verificationUrl: "https://www.credly.com/badges/your-badge-id",
-        color: "from-[#FF9900] to-[#232F3E]",
-        description: "Recognized for exceptional cloud architecture and solutions"
-      },
-      {
-        icon: <Award className="w-6 h-6" />,
-        title: "Microsoft Azure Expert",
-        organization: "Microsoft",
-        date: "2024",
-        badgeUrl: "/azure-badge.png",
-        verificationUrl: "https://learn.microsoft.com/en-us/users/your-profile",
-        color: "from-[#008AD7] to-[#0078D4]",
-        description: "Advanced proficiency in Azure cloud services"
-      }
     ]
   };
 
@@ -109,20 +85,6 @@ const Achievements = () => {
       repeat: Infinity,
       ease: "easeInOut"
     }
-  };
-
-  const buttonVariants = {
-    rest: { scale: 1 },
-    hover: { 
-      scale: 1.05,
-      transition: {
-        duration: 0.2,
-        type: "spring",
-        stiffness: 400,
-        damping: 10
-      }
-    },
-    tap: { scale: 0.95 }
   };
 
   const popupVariants = {
@@ -221,12 +183,20 @@ const Achievements = () => {
     <div className={`min-h-screen relative overflow-hidden ${
       isDarkMode 
         ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white' 
-        : 'bg-gradient-to-br from-white via-gray-50 to-[#fff1e6]'
+        : 'bg-gradient-to-br from-slate-50 via-white to-blue-50'
     }`}>
+      {/* Ultra-Modern Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-orange-300/10 to-pink-300/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 right-0 w-80 h-80 bg-gradient-to-l from-blue-300/10 to-purple-300/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-t from-green-300/10 to-emerald-300/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-orange-200/5 to-pink-200/5 rounded-full blur-[150px]"></div>
+      </div>
+      
       {/* Enhanced Decorative Elements */}
       <motion.div 
         animate={floatingAnimation}
-        className="absolute top-20 right-10 w-80 h-80 bg-[#ff6700]/10 rounded-full blur-[100px]"
+        className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-r from-orange-500/10 to-pink-500/10 rounded-full blur-[100px]"
       />
       <motion.div 
         animate={{
@@ -236,20 +206,20 @@ const Achievements = () => {
             delay: 0.5
           }
         }}
-        className="absolute bottom-40 -left-20 w-96 h-96 bg-[#ff6700]/5 rounded-full blur-[120px]"
+        className="absolute bottom-40 -left-20 w-96 h-96 bg-gradient-to-l from-purple-500/5 to-blue-500/5 rounded-full blur-[120px]"
       />
       
-      {/* Modern Glowing Grid Background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* Modern Grid Pattern Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
-        {/* Enhanced Header Section */}
+        {/* Ultra-Modern Header Section */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="relative mb-32 mt-12 px-4"
+          className="relative mb-32 mt-16 px-4"
         >
-          {/* Background Elements */}
+          {/* Enhanced Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div 
               animate={{ 
@@ -263,7 +233,7 @@ const Achievements = () => {
               }}
               className="absolute -top-1/2 -right-1/2 w-full h-full"
             >
-              <div className="w-full h-full bg-gradient-to-br from-[#ff6700]/20 to-transparent rounded-full blur-[100px]" />
+              <div className="w-full h-full bg-gradient-to-br from-orange-500/20 to-transparent rounded-full blur-[100px]" />
             </motion.div>
             <motion.div 
               animate={{ 
@@ -277,7 +247,7 @@ const Achievements = () => {
               }}
               className="absolute -bottom-1/2 -left-1/2 w-full h-full"
             >
-              <div className="w-full h-full bg-gradient-to-tr from-[#ff6700]/10 to-transparent rounded-full blur-3xl" />
+              <div className="w-full h-full bg-gradient-to-tr from-purple-500/10 to-transparent rounded-full blur-3xl" />
             </motion.div>
           </div>
 
@@ -289,28 +259,20 @@ const Achievements = () => {
               transition={{ duration: 0.8 }}
               className="text-center"
             >
-              {/* Enhanced decorative elements */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute top-0 right-0 w-20 h-20 bg-[#ff6700]/10 rounded-full blur-xl"
-              />
-              
               {/* Trending line animation */}
               <motion.div 
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-                className="h-[2px] bg-gradient-to-r from-transparent via-[#ff6700]/50 to-transparent mx-auto mb-6 max-w-lg"
+                className="h-[2px] bg-gradient-to-r from-transparent via-orange-500/50 to-transparent mx-auto mb-6 max-w-lg"
               />
 
               <div className="relative">
-                {/* Enhanced title with more dramatic animations */}
+                {/* Ultra-modern title with enhanced animations */}
                 <motion.h1 
-                  className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 ${
+                  className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
-                  } tracking-tight leading-tight`}
+                  } tracking-tight`}
                 >
                   {["Achievements", "&", "Milestones"].map((word, i) => (
                     <motion.span
@@ -332,32 +294,60 @@ const Achievements = () => {
                           animate="visible"
                           transition={{ delay: i * 0.2 + index * 0.05 }}
                           className={`inline-block ${
-                            word === "Milestones" ? "bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a]" : ""
+                            word === "Milestones" 
+                              ? "relative inline-block"
+                              : ""
                           }`}
                         >
-                          {letter}
+                          {word === "Milestones" ? (
+                            <>
+                              <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                                {letter}
+                              </span>
+                              {index === word.length - 1 && (
+                                <motion.div
+                                  className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-pink-400/20 to-purple-400/20 rounded-lg blur-lg"
+                                  animate={{ 
+                                    scale: [1, 1.05, 1],
+                                    opacity: [0.3, 0.6, 0.3]
+                                  }}
+                                  transition={{ 
+                                    duration: 3, 
+                                    repeat: Infinity, 
+                                    ease: "easeInOut" 
+                                  }}
+                                />
+                              )}
+                            </>
+                          ) : (
+                            letter
+                          )}
                         </motion.span>
                       ))}
                     </motion.span>
                   ))}
                 </motion.h1>
 
-                {/* Enhanced Decorative Line */}
-                <div className="relative w-40 mx-auto mb-8 overflow-hidden">
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    className="h-2 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] rounded-full"
-                  />
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0.8, 0.5]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -inset-4 bg-[#ff6700]/20 blur-xl rounded-full"
-                  />
+                {/* Dynamic underline */}
+                <div className="flex justify-center mb-8">
+                  <motion.div 
+                    className="relative h-3 overflow-hidden rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: "12rem" }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 rounded-full">
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent rounded-full"
+                        animate={{ x: ["-100%", "100%"] }}
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity, 
+                          ease: "easeInOut" 
+                        }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Enhanced subtitle with gradient text */}
@@ -365,12 +355,12 @@ const Achievements = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
-                  className={`text-lg md:text-xl ${
+                  className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed mb-12 ${
                     isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  } max-w-3xl mx-auto leading-relaxed`}
+                  }`}
                 >
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a] font-medium">Exploring</span> a journey of continuous growth and{' '}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a] font-medium">excellence</span> in tech innovation
+                  <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">Exploring</span> a journey of continuous growth and{' '}
+                  <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">excellence</span> in technology and innovation
                 </motion.p>
 
                 {/* Enhanced Decorative Elements */}
@@ -384,17 +374,36 @@ const Achievements = () => {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="w-32 h-32 border-2 border-[#ff6700]/20 rounded-full"
+                      className="w-32 h-32 border-2 border-orange-500/20 rounded-full"
                     />
                     <motion.div
                       animate={{ rotate: -360 }}
                       transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-4 border-2 border-[#ff6700]/30 rounded-full"
+                      className="absolute inset-4 border-2 border-pink-500/30 rounded-full"
                     />
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute inset-0 -m-2 border border-[#ff6700]/10 rounded-full"
+                      className="absolute inset-0 -m-2 border border-purple-500/10 rounded-full"
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Right side decorative element */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.4 }}
+                  className="absolute top-1/2 right-0 transform -translate-y-1/2 hidden lg:block"
+                >
+                  <div className="relative">
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 180, 360]
+                      }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-24 h-24 bg-gradient-to-br from-orange-400/20 to-pink-400/20 rounded-xl blur-sm"
                     />
                   </div>
                 </motion.div>
@@ -403,138 +412,167 @@ const Achievements = () => {
           </div>
         </motion.div>
 
-        {/* Modernized Professional Achievements Section */}
+        {/* Professional Recognition - Play Card Style */}
         <motion.div
           id="professional"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mb-28"
-          onViewportEnter={() => setActiveSection("professional")}
+          className="mb-32"
         >
-          <h2 className={`text-3xl font-bold mb-10 flex items-center ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-[#ff6700] to-[#ffb38a] text-white shadow-lg shadow-[#ff6700]/20">
-              <Trophy className="w-6 h-6" />
-            </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a]">
-              Recognition
-            </span>
-          </h2>
+          <motion.div className="text-center mb-16">
+            <motion.h2 
+              className={`text-5xl font-bold mb-4 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+                Professional Recognition
+              </span>
+            </motion.h2>
+          </motion.div>
           
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {achievements.professional.map((item, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`group relative overflow-hidden ${
-                  isDarkMode 
-                    ? 'bg-gray-800/50' 
-                    : 'bg-white/80'
-                } backdrop-blur-lg rounded-2xl shadow-lg transition-all duration-500`}
-                whileHover={{ 
-                  y: -5, 
-                  boxShadow: isDarkMode 
-                    ? '0 25px 50px -12px rgba(255, 103, 0, 0.15)' 
-                    : '0 25px 50px -12px rgba(255, 103, 0, 0.25)'
-                }}
+                className="group perspective-1000"
+                whileHover={{ scale: 1.02 }}
               >
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ff6700]/5 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Visual accent line */}
-                <motion.div 
-                  initial={{ height: '0%' }}
-                  animate={{ height: '100%' }}
-                  className="absolute left-0 top-0 w-1 bg-gradient-to-b from-[#ff6700] to-[#ffb38a] group-hover:w-2 transition-all duration-300"
-                />
-                
-                <div className="relative p-6 md:p-8 grid md:grid-cols-5 gap-8">
-                  {/* Image column */}
-                  <div className="md:col-span-2">
-                    <div className="relative rounded-xl overflow-hidden bg-gray-100 shadow-inner aspect-[4/3] group-hover:shadow-xl transition-all duration-300">
-                      {item.src && (
-                        <motion.img
-                          src={item.src}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                          initial={{ scale: 1 }}
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.4 }}
-                          onError={(e) => {
-                            e.currentTarget.src = '/placeholder-achievement.jpg';
-                          }}
-                        />
-                      )}
-                      
-                      {/* Overlay with gradient */}
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                      >
-                        <span className="text-white text-xs font-medium px-2 py-1 rounded bg-black/30 backdrop-blur-sm">
-                          {item.date}
-                        </span>
-                      </motion.div>
-                    </div>
-                  </div>
+                <motion.div
+                  className={`relative ${
+                    isDarkMode 
+                      ? 'bg-gradient-to-br from-gray-800/90 via-gray-900/80 to-black/90' 
+                      : 'bg-gradient-to-br from-white/95 via-white/90 to-blue-50/80'
+                  } backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 overflow-hidden transform-gpu transition-all duration-700`}
+                  whileHover={{ 
+                    rotateY: 5,
+                    rotateX: 5,
+                    boxShadow: "0 35px 80px -15px rgba(255, 103, 0, 0.3)"
+                  }}
+                >
+                  {/* Animated background orbs */}
+                  <motion.div
+                    className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-r from-orange-400/20 to-pink-400/20 rounded-full blur-3xl"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute -bottom-20 -left-20 w-32 h-32 bg-gradient-to-r from-purple-400/20 to-blue-400/20 rounded-full blur-3xl"
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.2, 0.5, 0.2]
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                  />
                   
-                  {/* Content column */}
-                  <div className="md:col-span-3 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="p-3 rounded-xl bg-[#fff1e6] text-[#ff6700] transform transition-transform duration-300 group-hover:scale-110 shadow-md">
-                          {item.icon}
-                        </div>
-                        <div>
-                          <h3 className={`text-2xl font-bold ${
-                            isDarkMode ? 'text-white' : 'text-gray-900'
-                          } group-hover:text-[#ff6700] transition-colors duration-300`}>{item.title}</h3>
-                          <p className="text-[#ff6700] font-medium mt-1">{item.organization}</p>
-                        </div>
-                      </div>
-                      
-                      <p className={`${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                      } leading-relaxed mb-6`}>
-                        {item.description}
-                      </p>
+                  {/* Play button style icon */}
+                  <motion.div 
+                    className="absolute top-6 right-6 w-12 h-12 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="w-8 h-8 text-white">
+                      {item.icon}
                     </div>
+                  </motion.div>
+                  
+                  {/* Image with play card styling */}
+                  <motion.div className="relative mb-6 rounded-2xl overflow-hidden aspect-video shadow-xl">
+                    <motion.img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                      onError={(e) => {
+                        e.currentTarget.src = '/placeholder-achievement.jpg';
+                      }}
+                    />
                     
-                    <div className="flex flex-wrap items-center justify-between mt-4">
-                      <motion.button 
-                        variants={buttonVariants}
-                        initial="rest"
-                        whileHover="hover"
-                        whileTap="tap"
-                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                          isDarkMode 
-                            ? 'bg-gray-700 hover:bg-gray-600' 
-                            : 'bg-[#fff1e6] hover:bg-[#ffe4d3]'
-                        } text-[#ff6700] font-medium transition-colors`}
-                        onClick={() => setSelectedImage(item.src || null)}
+                    {/* Overlay with glassmorphism */}
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <motion.div
+                        className="bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-white text-sm font-medium"
+                        initial={{ y: 20, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
                       >
-                        <Eye className="w-4 h-4" />
-                        View Achievement
-                      </motion.button>
-                      
-                      {/* Visual indicator for interaction */}
-                      <motion.div 
-                        initial={{ opacity: 0, x: -10 }}
-                        whileHover={{ opacity: 1, x: 0 }}
-                        className="text-[#ff6700]/70 flex items-center text-sm"
-                      >
-                        <span className="mr-2">Click to enlarge</span>
-                        <ChevronRight className="w-4 h-4" />
+                        {item.date}
                       </motion.div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Bottom edge highlight */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#ff6700]/0 via-[#ff6700]/30 to-[#ff6700]/0 group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+                    </motion.div>
+                    
+                    {/* Holographic shine effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transform -skew-x-12"
+                      animate={{ x: ["-100%", "200%"] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                    />
+                  </motion.div>
+                  
+                  {/* Content with enhanced typography */}
+                  <motion.div className="space-y-4">
+                    <motion.h3 
+                      className={`text-2xl font-bold ${
+                        isDarkMode ? 'text-white' : 'text-gray-900'
+                      } group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-500`}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      {item.title}
+                    </motion.h3>
+                    
+                    <motion.p className="text-orange-500 font-semibold text-lg">
+                      {item.organization}
+                    </motion.p>
+                    
+                    <motion.p className={`${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    } leading-relaxed`}>
+                      {item.description}
+                    </motion.p>
+                  </motion.div>
+                  
+                  {/* Interactive button with play styling */}
+                  <motion.button
+                    className="mt-6 w-full py-4 bg-gradient-to-r from-orange-500/10 to-pink-500/10 hover:from-orange-500 hover:to-pink-500 border border-orange-500/30 hover:border-transparent rounded-2xl text-orange-500 hover:text-white font-semibold transition-all duration-500 flex items-center justify-center gap-3 group/btn"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSelectedImage(item.src || null)}
+                  >
+                    <Eye className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
+                    <span>View Achievement</span>
+                    <motion.div
+                      className="w-6 h-6 bg-orange-500/20 rounded-full flex items-center justify-center"
+                      whileHover={{ rotate: 180 }}
+                    >
+                      <ChevronRight className="w-3 h-3" />
+                    </motion.div>
+                  </motion.button>
+                  
+                  {/* Animated border */}
+                  <motion.div
+                    className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-orange-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ 
+                      background: 'linear-gradient(45deg, transparent, transparent)',
+                      backgroundSize: '300% 300%'
+                    }}
+                    animate={{ 
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -547,16 +585,15 @@ const Achievements = () => {
           initial="hidden"
           animate="visible"
           className="mb-28"
-          onViewportEnter={() => setActiveSection("certifications")}
         >
           <h2 className={`text-3xl font-bold mb-10 flex items-center ${
             isDarkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-[#ff6700] to-[#ffb38a] text-white shadow-lg shadow-[#ff6700]/20">
+            <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25">
               <Scroll className="w-6 h-6" />
             </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a]">
-              Global Level Certifications
+            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+              Global Certifications
             </span>
           </h2>
           
@@ -573,32 +610,32 @@ const Achievements = () => {
                 whileHover={{ y: -8 }}
                 onClick={() => handleCertificateView(cert)}
               >
-                {/* Background shape */}
-                <div className="absolute -right-16 -top-16 w-32 h-32 bg-[#ff6700]/5 rounded-full blur-xl group-hover:bg-[#ff6700]/10 transition-colors duration-300" />
-                <div className="absolute -left-16 -bottom-16 w-40 h-40 bg-[#ff6700]/5 rounded-full blur-xl group-hover:bg-[#ff6700]/10 transition-colors duration-300" />
+                {/* Enhanced Background shapes */}
+                <div className="absolute -right-16 -top-16 w-32 h-32 bg-gradient-to-r from-orange-500/5 to-pink-500/5 rounded-full blur-xl group-hover:from-orange-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
+                <div className="absolute -left-16 -bottom-16 w-40 h-40 bg-gradient-to-l from-purple-500/5 to-blue-500/5 rounded-full blur-xl group-hover:from-purple-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
                 
                 {/* Certificate type indicator */}
                 {cert.type === 'pdf' && (
-                  <div className="absolute top-6 right-6 flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-[#ff6700]/10 text-[#ff6700]">
+                  <div className="absolute top-6 right-6 flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-600">
                     <Download className="w-3 h-3" /> PDF
                   </div>
                 )}
                 
                 <div className="flex items-start mb-6 relative">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-[#fff1e6] to-white text-[#ff6700] mr-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-orange-100 to-pink-100 text-orange-600 mr-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                     {cert.icon}
                   </div>
                   <div className="flex-1">
                     <h3 className={`text-2xl font-bold mb-2 ${
                       isDarkMode ? 'text-white' : 'text-gray-900'
-                    } group-hover:text-[#ff6700] transition-colors duration-300`}>{cert.title}</h3>
+                    } group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-300`}>{cert.title}</h3>
                     <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
                       {cert.organization}
                     </p>
                     <motion.div 
                       className={`flex justify-between items-center p-3 ${
                         isDarkMode ? 'bg-gray-700/70' : 'bg-gray-50/80'
-                      } backdrop-blur-sm rounded-lg text-sm border-l-4 border-[#ff6700]`}
+                      } backdrop-blur-sm rounded-lg text-sm border-l-4 border-orange-500`}
                       initial={{ x: 0 }}
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
@@ -606,7 +643,7 @@ const Achievements = () => {
                       <span className={isDarkMode ? 'text-gray-300' : 'text-gray-500'}>
                         Issued: {cert.date}
                       </span>
-                      <span className="text-[#ff6700] font-medium">
+                      <span className="text-orange-600 font-medium">
                         ID: {cert.credentialId}
                       </span>
                     </motion.div>
@@ -617,7 +654,7 @@ const Achievements = () => {
                   isDarkMode ? 'border-gray-700' : 'border-gray-200'
                 } mt-4`}>
                   <motion.button
-                    className="w-full text-[#ff6700] group-hover:text-[#ff8533] transition-colors flex items-center justify-between gap-2 py-2"
+                    className="w-full text-orange-600 group-hover:text-orange-500 transition-colors flex items-center justify-between gap-2 py-2"
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -640,131 +677,11 @@ const Achievements = () => {
                 
                 {/* Hover indicator */}
                 <motion.div 
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#ff6700] to-[#ffb38a]"
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-pink-500"
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
                 />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Modernized Global Badges Section */}
-        <motion.div
-          id="badges"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="mb-20"
-          onViewportEnter={() => setActiveSection("badges")}
-        >
-          <h2 className={`text-3xl font-bold mb-10 flex items-center ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-[#ff6700] to-[#ffb38a] text-white shadow-lg shadow-[#ff6700]/20">
-              <Award className="w-6 h-6" />
-            </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a]">
-              Global Badges
-            </span>
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {achievements.badges.map((badge, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className={`relative overflow-hidden rounded-2xl shadow-lg group`}
-                whileHover={{ y: -5 }}
-              >
-                {/* Enhanced glass-like background */}
-                <div className={`absolute inset-0 ${
-                  isDarkMode ? 'bg-gray-800/90' : 'bg-white/90'
-                } backdrop-blur-md z-0`} />
-                
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${badge.color} opacity-10 group-hover:opacity-15 transition-opacity duration-500`} />
-                
-                {/* Badge shape in background */}
-                <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-gradient-to-br from-[#ff6700]/5 to-transparent rounded-full blur-3xl group-hover:scale-110 transition-transform duration-500" />
-                
-                <div className="relative p-8 z-10">
-                  <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                    <div className="relative">
-                      {/* Badge glow effect */}
-                      <motion.div 
-                        animate={{ 
-                          boxShadow: ['0 0 0 rgba(255, 103, 0, 0.3)', '0 0 20px rgba(255, 103, 0, 0.6)', '0 0 0 rgba(255, 103, 0, 0.3)'],
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="absolute inset-0 rounded-full"
-                      />
-                      <div className="relative w-24 h-24 rounded-full p-1 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] shadow-lg">
-                        <div className={`rounded-full p-2 w-full h-full flex items-center justify-center ${
-                          isDarkMode ? 'bg-gray-900' : 'bg-white'
-                        }`}>
-                          <img
-                            src={badge.badgeUrl}
-                            alt={badge.title}
-                            className="w-full h-full object-contain rounded-full"
-                            onError={(e) => {
-                              e.currentTarget.src = '/placeholder-badge.svg';
-                            }}
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* Verified indicator */}
-                      <div className="absolute -bottom-1 -right-1 bg-[#ff6700] text-white p-1 rounded-full border-2 border-white dark:border-gray-800">
-                        <Check className="w-3 h-3" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1">
-                      <h3 className={`text-2xl font-bold mb-2 ${
-                        isDarkMode ? 'text-white' : 'text-gray-900'
-                      } group-hover:text-[#ff6700] transition-colors duration-300`}>
-                        {badge.title}
-                      </h3>
-                      <p className="bg-clip-text text-transparent bg-gradient-to-r from-[#ff6700] to-[#ffb38a] font-medium">
-                        {badge.organization}
-                      </p>
-                      <p className={`mt-2 ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                      }`}>{badge.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className={`mt-6 flex items-center justify-between ${
-                    isDarkMode ? 'border-gray-700' : 'border-gray-200'
-                  } pt-4 border-t`}>
-                    <div className={`flex items-center ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                    }`}>
-                      <Award className="w-5 h-5 mr-2" />
-                      <span>Earned {badge.date}</span>
-                    </div>
-                    <motion.a
-                      href={badge.verificationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-[#ff6700] hover:text-[#ff8533] font-medium group/link"
-                      whileHover={{ x: 5 }}
-                    >
-                      Verify Badge
-                      <motion.span 
-                        className="text-xl transition-transform"
-                        animate={{ x: [0, 3, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </motion.span>
-                    </motion.a>
-                  </div>
-                </div>
-                
-                {/* Edge highlights */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff6700]/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
           </div>
@@ -790,7 +707,7 @@ const Achievements = () => {
               onClick={e => e.stopPropagation()}
             >
               <motion.button
-                className="absolute -top-12 right-0 text-white hover:text-[#ff6700] transition-colors"
+                className="absolute -top-12 right-0 text-white hover:text-orange-400 transition-colors"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedImage(null)}
@@ -801,7 +718,7 @@ const Achievements = () => {
                 <motion.img
                   src={selectedImage}
                   alt="Achievement"
-                  className={`${getImageClassName(achievements.professional.find(item => item.src === selectedImage)?.title || '')} ring-4 ring-[#ff6700]/20`}
+                  className={`${getImageClassName(achievements.professional.find(item => item.src === selectedImage)?.title || '')} ring-4 ring-orange-500/20`}
                   layoutId={selectedImage}
                   transition={{ duration: 0.3 }}
                   onError={() => {
@@ -836,12 +753,12 @@ const Achievements = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full h-[85vh] max-w-6xl bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-2xl border border-[#ff6700]/20"
+              className="relative w-full h-[85vh] max-w-6xl bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-2xl border border-orange-500/20"
               onClick={e => e.stopPropagation()}
             >
-              <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-[#ff6700] to-[#ffb38a] h-1" />
+              <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-orange-500 to-pink-500 h-1" />
               <motion.button
-                className="absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-sm rounded-full p-2 text-[#ff6700] shadow-lg"
+                className="absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-sm rounded-full p-2 text-orange-500 shadow-lg"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedPdf(null)}
@@ -879,12 +796,12 @@ const Achievements = () => {
               } shadow-2xl overflow-y-auto`}
             >
               {/* Top color bar */}
-              <div className="h-1 w-full bg-gradient-to-r from-[#ff6700] to-[#ffb38a]" />
+              <div className="h-1 w-full bg-gradient-to-r from-orange-500 to-pink-500" />
               
               <div className="p-8">
                 <div className="flex justify-between items-center">
                   <motion.button
-                    className="text-gray-500 hover:text-[#ff6700] p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="text-gray-500 hover:text-orange-500 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
                     whileHover={{ rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setSelectedCert(null)}
@@ -904,14 +821,14 @@ const Achievements = () => {
                   className="mt-8"
                 >
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="p-4 rounded-xl bg-gradient-to-br from-[#ff6700] to-[#ffb38a] text-white shadow-lg">
+                    <div className="p-4 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 text-white shadow-lg">
                       {selectedCert.icon}
                     </div>
                     <div>
                       <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                         {selectedCert.title}
                       </h2>
-                      <p className="text-[#ff6700]">{selectedCert.organization}</p>
+                      <p className="text-orange-500">{selectedCert.organization}</p>
                     </div>
                   </div>
 

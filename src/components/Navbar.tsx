@@ -59,8 +59,8 @@ const Navbar = () => {
       <nav 
         className={`fixed w-full z-40 transition-all duration-500 ${
           isScrolled 
-            ? 'bg-gradient-to-r from-[#ff5500]/90 via-[#ff6700]/90 to-[#ff7a1f]/90 backdrop-blur-lg border-b border-white/10'
-            : 'bg-gradient-to-r from-[#ff6700]/90 to-[#ff8534]/90 shadow-lg shadow-[#ff6700]/35 backdrop-blur-xl'
+            ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200/50 shadow-lg shadow-gray-900/5'
+            : 'bg-gradient-to-r from-orange-500/95 via-pink-500/95 to-purple-500/95 backdrop-blur-xl shadow-2xl shadow-orange-500/25'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,28 +72,36 @@ const Navbar = () => {
             >
               <Link to="/" className="flex items-center space-x-3 sm:space-x-4 group">
                 <motion.div
-                  whileHover={{ rotate: 180, scale: 1.1 }}
-                  transition={{ duration: 0.6, type: "spring", bounce: 0.5 }}
-                  className="p-2 sm:p-2.5 rounded-xl bg-white/20 backdrop-blur-md hover:bg-white/30 shadow-lg shadow-[#ff6700]/20"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.8, type: "spring", bounce: 0.6 }}
+                  className={`p-2.5 rounded-2xl shadow-lg transition-all duration-300 ${
+                    isScrolled 
+                      ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-orange-500/25'
+                      : 'bg-white/20 backdrop-blur-md hover:bg-white/30 text-white shadow-white/20'
+                  }`}
                 >
                   <Code2 className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                 </motion.div>
                 <div className="flex flex-col">
                   <motion.span 
-                    className="text-2xl sm:text-3xl font-bold text-white"
+                    className={`text-2xl sm:text-3xl font-bold transition-colors duration-300 ${
+                      isScrolled ? 'text-gray-900' : 'text-white'
+                    }`}
                     whileHover={{ scale: 1.05 }}
                     style={{
                       fontFamily: '"Crimson Text", serif',
                       fontStyle: 'italic',
                       fontWeight: 700,
                       letterSpacing: '0.02em',
-                      textShadow: '2px 2px 8px rgba(0,0,0,0.2)',
+                      textShadow: isScrolled ? 'none' : '2px 2px 8px rgba(0,0,0,0.2)',
                     }}
                   >
                     Vineet
                   </motion.span>
                   <motion.span 
-                    className="text-xs sm:text-sm text-white/90 tracking-[0.2em]"
+                    className={`text-xs sm:text-sm tracking-[0.2em] transition-colors duration-300 ${
+                      isScrolled ? 'text-gray-600' : 'text-white/90'
+                    }`}
                     style={{
                       fontFamily: '"Inter", sans-serif',
                       fontWeight: 500
@@ -122,14 +130,18 @@ const Navbar = () => {
                   >
                     <Link
                       to={link.path}
-                      className={`px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                      className={`px-4 lg:px-5 py-2 lg:py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                         isActive(link.path)
-                          ? 'bg-white/25 text-white shadow-lg border border-white/20 backdrop-blur-md'
-                          : 'text-white/90 hover:bg-white/15 hover:text-white hover:shadow-md hover:shadow-[#ff6700]/10'
+                          ? isScrolled
+                            ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25'
+                            : 'bg-white/25 text-white shadow-lg border border-white/20 backdrop-blur-md'
+                          : isScrolled
+                            ? 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                            : 'text-white/90 hover:bg-white/15 hover:text-white hover:shadow-md hover:shadow-orange-500/10'
                       }`}
                       style={{ 
                         fontFamily: '"Inter", sans-serif',
-                        textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                        textShadow: isScrolled ? 'none' : '0 1px 2px rgba(0,0,0,0.1)'
                       }}
                     >
                       {link.name}
@@ -144,7 +156,11 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg bg-white/20 text-white hover:bg-white/30 transition-all duration-300 backdrop-blur-md shadow-lg shadow-[#ff6700]/10"
+              className={`md:hidden p-2.5 rounded-xl transition-all duration-300 backdrop-blur-md shadow-lg ${
+                isScrolled
+                  ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-white/20 text-white hover:bg-white/30 shadow-white/10'
+              }`}
             >
               <motion.div
                 animate={{ rotate: isOpen ? 180 : 0 }}

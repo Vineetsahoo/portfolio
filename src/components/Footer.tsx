@@ -31,147 +31,231 @@ const Footer = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   };
-  
-  interface QuickLink {
-    name: string;
-    path: string;
-  }
-
-  interface ContactInfo {
-    icon: JSX.Element;
-    text: string;
-  }
-
-  interface SocialLink {
-    icon: JSX.Element;
-    url: string;
-    label: string;
-  }
 
   return (
-    <footer className="bg-gradient-to-b from-[#121212] via-[#1a1a1a] to-black text-gray-300 relative">
-      {/* Modern decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ff6700] to-transparent opacity-70"></div>
-      <div className="absolute top-10 right-10 w-20 h-20 bg-[#ff6700] rounded-full filter blur-[80px] opacity-20"></div>
-      <div className="absolute bottom-20 left-10 w-32 h-32 bg-blue-500 rounded-full filter blur-[100px] opacity-10"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-10">
+    <footer className="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white relative overflow-hidden">
+      {/* Ultra-Modern Background Elements */}
+      <div className="absolute inset-0">
+        {/* Geometric mesh pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="footerGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="url(#footerGradient)" strokeWidth="0.5"/>
+              </pattern>
+              <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f97316" stopOpacity="0.6"/>
+                <stop offset="50%" stopColor="#ec4899" stopOpacity="0.4"/>
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.6"/>
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#footerGrid)"/>
+          </svg>
+        </div>
+
+        {/* Floating orbs */}
+        <motion.div
+          className="absolute top-20 left-1/4 w-40 h-40 bg-gradient-to-r from-orange-500/20 to-pink-500/20 rounded-full blur-[60px]"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-1/3 w-32 h-32 bg-gradient-to-l from-blue-500/20 to-purple-500/20 rounded-full blur-[50px]"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.7, 0.4]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        {/* Main Footer Content */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-12 gap-10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Brand Section - Modernized */}
-          <motion.div 
-            className="col-span-1 md:col-span-5"
-            variants={itemVariants}
-          >
-            <div className="relative mb-8">
-              <motion.h3 
-                className="text-4xl font-extrabold text-white inline-block"
-                whileHover={{ x: 5 }}
+          {/* Left Section - Brand & Social */}
+          <motion.div variants={itemVariants}>
+            {/* Brand */}
+            <div className="mb-8">
+              <motion.h2 
+                className="text-5xl font-black bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4"
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 Vineet Sahoo
-                <div className="absolute -bottom-1 left-0 w-16 h-1.5 bg-gradient-to-r from-[#ff6700] to-orange-400 rounded-full"></div>
-              </motion.h3>
+              </motion.h2>
+              <motion.div 
+                className="w-32 h-1 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full mb-6"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+              />
+              <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                Crafting exceptional digital experiences through innovative web development and creative problem-solving.
+              </p>
             </div>
-            <p className="text-gray-400 mb-8 text-lg leading-relaxed">
-              Building digital experiences that make a difference. Specialized in modern web development
-              and creative solutions that blend innovation with practicality.
-            </p>
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                { icon: <Github className="w-5 h-5" />, url: 'https://github.com/Vineetsahoo', label: 'GitHub' },
-                { icon: <Linkedin className="w-5 h-5" />, url: 'https://www.linkedin.com/in/vineet-sahoo-81b022311/', label: 'LinkedIn' },
-                { icon: <Instagram className="w-5 h-5" />, url: 'https://www.instagram.com/sahoo_era/', label: 'Instagram' },
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 hover:border-[#ff6700]/50 hover:bg-gray-800/50 text-gray-300 hover:text-white transition-all duration-300 group"
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={social.label}
-                >
-                  <span className="transform group-hover:text-[#ff6700] transition-all duration-300">
-                    {social.icon}
-                  </span>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Quick Links - Modernized */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-3">
-            <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
-              Quick Links
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-[#ff6700] to-orange-400 rounded-full"></div>
-            </h4>
-            <ul className="space-y-4">
-              {quickLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Link
-                    to={link.path}
-                    className="flex items-center text-gray-400 hover:text-[#ff6700] transition-colors group"
+            {/* Social Media - Modern Card Style */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Let's Connect</h3>
+              <div className="flex gap-4">
+                {[
+                  { 
+                    icon: <Github className="w-6 h-6" />, 
+                    url: 'https://github.com/Vineetsahoo', 
+                    label: 'GitHub',
+                    gradient: 'from-gray-600 to-gray-800',
+                    hoverGradient: 'hover:from-gray-500 hover:to-gray-700'
+                  },
+                  { 
+                    icon: <Linkedin className="w-6 h-6" />, 
+                    url: 'https://www.linkedin.com/in/vineet-sahoo-81b022311/', 
+                    label: 'LinkedIn',
+                    gradient: 'from-blue-600 to-blue-800',
+                    hoverGradient: 'hover:from-blue-500 hover:to-blue-700'
+                  },
+                  { 
+                    icon: <Instagram className="w-6 h-6" />, 
+                    url: 'https://www.instagram.com/sahoo_era/', 
+                    label: 'Instagram',
+                    gradient: 'from-pink-500 to-purple-600',
+                    hoverGradient: 'hover:from-pink-400 hover:to-purple-500'
+                  }
+                ].map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group relative p-4 bg-gradient-to-r ${social.gradient} ${social.hoverGradient} rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl`}
+                    whileHover={{ y: -8, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={social.label}
                   >
-                    <span className="inline-block w-0 group-hover:w-4 overflow-hidden transition-all duration-300 transform translate-y-0.5">
-                      <ArrowRight className="h-4 w-4" />
-                    </span>
-                    <span className="text-base ml-1">{link.name}</span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
+                    <div className="relative z-10 text-white">
+                      {social.icon}
+                    </div>
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Contact Info - Modernized */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-4">
-            <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
-              Contact Info
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-[#ff6700] to-orange-400 rounded-full"></div>
-            </h4>
-            
+          {/* Right Section - Navigation & Contact */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+            variants={itemVariants}
+          >
+            {/* Quick Navigation */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-6 relative">
+                Navigation
+                <motion.div 
+                  className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                />
+              </h3>
+              <ul className="space-y-4">
+                {quickLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    whileHover={{ x: 8 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Link
+                      to={link.path}
+                      className="group flex items-center text-gray-300 hover:text-white transition-all duration-300"
+                    >
+                      <motion.div 
+                        className="w-2 h-2 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                      <span className="text-lg font-medium group-hover:font-semibold transition-all duration-300">
+                        {link.name}
+                      </span>
+                      <ArrowRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
             {/* Contact Information */}
-            <ul className="space-y-5">
-              {contactInfo.map((item, index) => (
-                <motion.li 
-                  key={index} 
-                  className="flex items-center text-gray-400 group"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <span className="mr-3 p-2 rounded-lg bg-gray-800/50 text-[#ff6700] border border-gray-700/30 group-hover:bg-[#ff6700]/10 transition-all duration-300">
-                    {item.icon}
-                  </span>
-                  <span className="text-base">{item.text}</span>
-                </motion.li>
-              ))}
-            </ul>
+            <div>
+              <h3 className="text-xl font-bold text-white mb-6 relative">
+                Get in Touch
+                <motion.div 
+                  className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                />
+              </h3>
+              <ul className="space-y-5">
+                {contactInfo.map((item, index) => (
+                  <motion.li 
+                    key={index} 
+                    className="group"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-orange-400/30 transition-all duration-300">
+                      <span className="mr-4 p-2 rounded-lg bg-gradient-to-r from-orange-400 to-pink-400 text-white">
+                        {item.icon}
+                      </span>
+                      <span className="text-gray-300 group-hover:text-white transition-colors duration-300 font-medium">
+                        {item.text}
+                      </span>
+                    </div>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         </motion.div>
 
-        <div className="mt-16 pt-8 border-t border-gray-800/50">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
-            <motion.p 
-              className="text-gray-400 text-sm"
-              whileHover={{ x: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              © {new Date().getFullYear()} <span className="text-white font-medium">Vineet Sahoo</span>. All rights reserved.
-            </motion.p>
-            <div className="flex space-x-6 text-sm text-gray-500">
+        {/* Bottom Section */}
+        <motion.div 
+          className="pt-8 border-t border-white/10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+            {/* Copyright */}
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-pink-400 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">VS</span>
+              </div>
+              <p className="text-gray-400">
+                © {new Date().getFullYear()} <span className="text-white font-semibold">Vineet Sahoo</span>. Crafted with passion.
+              </p>
+            </div>
+
+            {/* Links */}
+            <div className="flex items-center gap-8 text-sm">
               <motion.a 
                 href="#" 
-                className="hover:text-[#ff6700] transition-colors"
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-300"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -179,15 +263,22 @@ const Footer = () => {
               </motion.a>
               <motion.a 
                 href="#" 
-                className="hover:text-[#ff6700] transition-colors"
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-300"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 Terms of Service
               </motion.a>
+              <motion.div
+                className="text-gray-500"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Made in India
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
