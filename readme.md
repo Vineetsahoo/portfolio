@@ -1,7 +1,75 @@
 # 🚀 Vineet Sahoo - Modern Portfolio
 
 <div align="center">
-  <img sr## 📦 Installation & Setup
+  <img src="https://img.shields.io/badge/React-18.x-61dafb?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Vite-5.x-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Framer_Motion-11.x-0055ff?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
+</div>
+
+<div align="center">
+  <h3>🌟 A modern, interactive portfolio showcasing expertise in web development, UI/UX design, and professional achievements</h3>
+  <p>Built with cutting-edge technologies and featuring ultra-modern design patterns</p>
+</div>
+
+---
+
+## 🔗 Live Website
+<div align="center">
+  <a href="https://portfolio-xi-ten-65.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🌐_Visit_Portfolio-FF6B35?style=for-the-badge&logoColor=white" alt="Visit Portfolio" />
+  </a>
+</div>
+
+## ✨ Features
+
+### 🎨 **Design & User Experience**
+- 🌟 **Ultra-Modern UI** - Glass morphism, gradient effects, and smooth animations
+- 📱 **Fully Responsive** - Optimized for desktop, tablet, and mobile devices
+- 🌙 **Dark/Light Mode** - Dynamic theme switching with smooth transitions
+- 🎭 **Micro-Interactions** - Engaging hover effects and animated components
+- 🎨 **Custom Animations** - Framer Motion powered smooth transitions
+
+### 💼 **Portfolio Sections**
+- 🏠 **Hero Section** - Dynamic introduction with animated profile and typing effects
+- 👨‍💻 **About Me** - Comprehensive background, skills, and professional journey
+- 🚀 **Projects Showcase** - Interactive project cards with live demos and GitHub links
+- 🏆 **Achievements** - Professional certifications and competition wins
+- 📧 **Contact Form** - Functional contact form with validation
+
+### 🔧 **Technical Features**
+- ⚡ **Lightning Fast** - Vite-powered development and optimized builds
+- 🔍 **SEO Optimized** - Meta tags, structured data, and semantic HTML
+- ♿ **Accessibility** - WCAG compliant with proper ARIA labels
+- 🎯 **Performance** - Lazy loading, code splitting, and optimized assets
+- 📊 **Analytics Ready** - Google Analytics integration support
+
+## 🛠 Tech Stack
+
+### **Frontend Framework**
+- ⚛️ **React 18** - Latest version with concurrent features
+- 🔷 **TypeScript** - Type-safe development experience
+- ⚡ **Vite** - Next-generation frontend tooling
+
+### **Styling & UI**
+- 🎨 **Tailwind CSS** - Utility-first CSS framework
+- 🎭 **Framer Motion** - Production-ready motion library
+- 🎪 **Lucide React** - Beautiful, customizable icons
+- ✨ **CSS3** - Modern styling with custom properties
+
+### **Libraries & Tools**
+- 📝 **React Type Animation** - Smooth typing animations
+- 🧭 **React Router DOM** - Client-side routing
+- 🎯 **React Hook Form** - Performant form handling
+- 🔧 **ESLint & Prettier** - Code quality and formatting
+
+### **Development & Build**
+- 📦 **npm/yarn** - Package management
+- 🔨 **PostCSS** - CSS processing and optimization
+- 🚀 **Vercel** - Deployment and hosting platform
+
+## 📦 Installation & Setup
 
 ### **Prerequisites**
 - Node.js (v18 or higher)
@@ -72,99 +140,15 @@ portfolio/
 ├── 📄 tailwind.config.js      # Tailwind CSS config
 ├── 📄 tsconfig.json           # TypeScript config
 └── 📄 README.md              # Project documentation
-```://img.shields.io/badge/React-18.x-61dafb?style=for-the-badge&logo=react&logoColor=white" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Vite-5.x-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/Framer_Motion-11.x-0055ff?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
-</div>
-
-<div align="center">
-  <h3>🌟 A modern, interactive portfolio showcasing expertise in web development, UI/UX design, and professional achievements</h3>
-  <p>Built with cutting-edge technologies and featuring ultra-modern design patterns</p>
-</div>
-
----
-
-## 🔗 Live Website
-<div align="center">
-  <a href="https://portfolio-xi-ten-65.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/🌐_Visit_Portfolio-FF6B35?style=for-the-badge&logoColor=white" alt="Visit Portfolio" />
-  </a>
-</div>
-
-## ✨ Features
-
-### � **Design & User Experience**
-- 🌟 **Ultra-Modern UI** - Glass morphism, gradient effects, and smooth animations
-- 📱 **Fully Responsive** - Optimized for desktop, tablet, and mobile devices
-- � **Dark/Light Mode** - Dynamic theme switching with smooth transitions
-- 🎭 **Micro-Interactions** - Engaging hover effects and animated components
-- 🎨 **Custom Animations** - Framer Motion powered smooth transitions
-
-### 💼 **Portfolio Sections**
-- 🏠 **Hero Section** - Dynamic introduction with animated profile and typing effects
-- 👨‍💻 **About Me** - Comprehensive background, skills, and professional journey
-- � **Projects Showcase** - Interactive project cards with live demos and GitHub links
-- 🏆 **Achievements** - Professional certifications and competition wins
-- � **Contact Form** - Functional contact form with validation
-
-### 🔧 **Technical Features**
-- ⚡ **Lightning Fast** - Vite-powered development and optimized builds
-- � **SEO Optimized** - Meta tags, structured data, and semantic HTML
-- ♿ **Accessibility** - WCAG compliant with proper ARIA labels
-- 🎯 **Performance** - Lazy loading, code splitting, and optimized assets
-- 📊 **Analytics Ready** - Google Analytics integration support
-
-## 🛠 Tech Stack
-
-### **Frontend Framework**
-- ⚛️ **React 18** - Latest version with concurrent features
-- 🔷 **TypeScript** - Type-safe development experience
-- ⚡ **Vite** - Next-generation frontend tooling
-
-### **Styling & UI**
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🎭 **Framer Motion** - Production-ready motion library
-- 🎪 **Lucide React** - Beautiful, customizable icons
-- ✨ **CSS3** - Modern styling with custom properties
-
-### **Libraries & Tools**
-- 📝 **React Type Animation** - Smooth typing animations
-- 🧭 **React Router DOM** - Client-side routing
-- 🎯 **React Hook Form** - Performant form handling
-- 🔧 **ESLint & Prettier** - Code quality and formatting
-
-### **Development & Build**
-- 📦 **npm/yarn** - Package management
-- 🔨 **PostCSS** - CSS processing and optimization
-- 🚀 **Vercel** - Deployment and hosting platform
-
-## 📦 Installation
-If you’d like to run my portfolio locally, follow these steps:
-
-```bash
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-open index.html
 ```
 
-## 🎨 Screenshots & Preview
+## 🎯 Performance Metrics
 
-### **Desktop View**
-<div align="center">
-  <img src="https://via.placeholder.com/800x500/1a1a1a/ffffff?text=Desktop+Preview" alt="Desktop Preview" />
-</div>
-
-### **Mobile View**
-<div align="center">
-  <img src="https://via.placeholder.com/400x600/1a1a1a/ffffff?text=Mobile+Preview" alt="Mobile Preview" />
-</div>
-
-### **Key Features Showcase**
-<div align="center">
-  <img src="https://via.placeholder.com/800x400/1a1a1a/ffffff?text=Interactive+Animations" alt="Interactive Animations" />
-</div>
+- ⚡ **Lighthouse Score**: 98/100
+- 🚀 **First Contentful Paint**: < 1.5s
+- 📱 **Mobile Responsive**: 100%
+- ♿ **Accessibility**: WCAG AA Compliant
+- 🔍 **SEO Optimized**: Meta tags & structured data
 
 ## 🚀 Deployment
 
@@ -187,14 +171,6 @@ npm run build
 npm run build
 # Deploy dist/ folder to gh-pages branch
 ```
-
-## 🎯 Performance Metrics
-
-- ⚡ **Lighthouse Score**: 98/100
-- 🚀 **First Contentful Paint**: < 1.5s
-- 📱 **Mobile Responsive**: 100%
-- ♿ **Accessibility**: WCAG AA Compliant
-- 🔍 **SEO Optimized**: Meta tags & structured data
 
 ## 🤝 Contributing
 
@@ -263,6 +239,6 @@ If you found this portfolio helpful or inspiring, please consider giving it a �
 
 <div align="center">
   <h3>🚀 Thank you for visiting my portfolio!</h3>
-  <p><em>Built with � using React, TypeScript & Tailwind CSS</em></p>
+  <p><em>Built with ❤️ using React, TypeScript & Tailwind CSS</em></p>
   <p><strong>© 2025 Vineet Sahoo. All rights reserved.</strong></p>
 </div>
