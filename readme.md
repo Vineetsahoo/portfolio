@@ -226,10 +226,6 @@ copies or substantial portions of the Software.
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/sahoo_era/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@vineetsahoo.dev)
 
-### **📊 GitHub Stats**
-![Profile Views](https://komarev.com/ghpvc/?username=VineetSahoo&color=brightgreen&style=for-the-badge)
-![GitHub followers](https://img.shields.io/github/followers/VineetSahoo?style=for-the-badge&color=blue)
-
 ### **⭐ Show Your Support**
 If you found this portfolio helpful or inspiring, please consider giving it a ⭐!
 
