@@ -113,15 +113,6 @@ const Projects = () => {
     }
   };
 
-  const letterAnimation = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Ultra-Modern Background Elements */}
@@ -149,34 +140,10 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {["My", "Creative", "Portfolio"].map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 }
-                  }}
-                  transition={{ delay: i * 0.2 }}
-                  className="inline-block mx-2"
-                >
-                  {word.split('').map((letter, index) => (
-                    <motion.span
-                      key={index}
-                      variants={letterAnimation}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: i * 0.2 + index * 0.05 }}
-                      className={`inline-block ${
-                        word === "Portfolio" ? "bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent" : ""
-                      }`}
-                    >
-                      {letter}
-                    </motion.span>
-                  ))}
-                </motion.span>
-              ))}
+              My Creative{' '}
+              <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                Portfolio
+              </span>
             </motion.h1>
 
             {/* Dynamic underline */}

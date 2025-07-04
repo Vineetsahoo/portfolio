@@ -170,15 +170,6 @@ const Achievements = () => {
     return "w-full h-auto rounded-lg shadow-2xl";
   };
 
-  const letterAnimation = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
     <div className={`min-h-screen relative overflow-hidden ${
       isDarkMode 
@@ -273,59 +264,14 @@ const Achievements = () => {
                   className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight ${
                     isDarkMode ? 'text-white' : 'text-gray-900'
                   } tracking-tight`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  {["Achievements", "&", "Milestones"].map((word, i) => (
-                    <motion.span
-                      key={i}
-                      initial="hidden"
-                      animate="visible"
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: { opacity: 1 }
-                      }}
-                      transition={{ delay: i * 0.2 }}
-                      className="inline-block mx-2"
-                    >
-                      {word.split('').map((letter, index) => (
-                        <motion.span
-                          key={index}
-                          variants={letterAnimation}
-                          initial="hidden"
-                          animate="visible"
-                          transition={{ delay: i * 0.2 + index * 0.05 }}
-                          className={`inline-block ${
-                            word === "Milestones" 
-                              ? "relative inline-block"
-                              : ""
-                          }`}
-                        >
-                          {word === "Milestones" ? (
-                            <>
-                              <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-                                {letter}
-                              </span>
-                              {index === word.length - 1 && (
-                                <motion.div
-                                  className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 via-pink-400/20 to-purple-400/20 rounded-lg blur-lg"
-                                  animate={{ 
-                                    scale: [1, 1.05, 1],
-                                    opacity: [0.3, 0.6, 0.3]
-                                  }}
-                                  transition={{ 
-                                    duration: 3, 
-                                    repeat: Infinity, 
-                                    ease: "easeInOut" 
-                                  }}
-                                />
-                              )}
-                            </>
-                          ) : (
-                            letter
-                          )}
-                        </motion.span>
-                      ))}
-                    </motion.span>
-                  ))}
+                  Achievements & {' '}
+                  <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                    Milestones
+                  </span>
                 </motion.h1>
 
                 {/* Dynamic underline */}
@@ -578,7 +524,7 @@ const Achievements = () => {
           </div>
         </motion.div>
 
-        {/* Enhanced Certifications Section */}
+        {/* Redesigned Global Certifications Section */}
         <motion.div
           id="certifications"
           variants={staggerContainer}
@@ -586,102 +532,195 @@ const Achievements = () => {
           animate="visible"
           className="mb-28"
         >
-          <h2 className={`text-3xl font-bold mb-10 flex items-center ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25">
-              <Scroll className="w-6 h-6" />
+          {/* Modern Section Header */}
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative inline-block mb-8">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-400/20 via-pink-400/20 to-purple-400/20 rounded-2xl blur-xl"></div>
+              <div className="relative inline-flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50">
+                <Scroll className="w-8 h-8 text-orange-500" />
+              </div>
             </div>
-            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-              Global Certifications
-            </span>
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <h2 className={`text-5xl lg:text-6xl font-bold mb-6 ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
+              Global{' '}
+              <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                Certifications
+              </span>
+            </h2>
+            
+            <p className={`text-xl max-w-3xl mx-auto leading-relaxed ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">Industry-recognized</span> credentials that validate my expertise and commitment to{' '}
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-medium">professional excellence</span>
+            </p>
+          </motion.div>
+
+          {/* Ultra-Modern Certificate Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {achievements.certifications.map((cert, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className={`group relative ${
-                  isDarkMode 
-                    ? 'bg-gray-800/50' 
-                    : 'bg-white/80'
-                } backdrop-blur-lg p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden`}
-                whileHover={{ y: -8 }}
-                onClick={() => handleCertificateView(cert)}
+                className="group relative"
+                whileHover={{ scale: 1.02 }}
               >
-                {/* Enhanced Background shapes */}
-                <div className="absolute -right-16 -top-16 w-32 h-32 bg-gradient-to-r from-orange-500/5 to-pink-500/5 rounded-full blur-xl group-hover:from-orange-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
-                <div className="absolute -left-16 -bottom-16 w-40 h-40 bg-gradient-to-l from-purple-500/5 to-blue-500/5 rounded-full blur-xl group-hover:from-purple-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
-                
-                {/* Certificate type indicator */}
-                {cert.type === 'pdf' && (
-                  <div className="absolute top-6 right-6 flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-600">
-                    <Download className="w-3 h-3" /> PDF
-                  </div>
-                )}
-                
-                <div className="flex items-start mb-6 relative">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-orange-100 to-pink-100 text-orange-600 mr-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                    {cert.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className={`text-2xl font-bold mb-2 ${
-                      isDarkMode ? 'text-white' : 'text-gray-900'
-                    } group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-300`}>{cert.title}</h3>
-                    <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
-                      {cert.organization}
-                    </p>
-                    <motion.div 
-                      className={`flex justify-between items-center p-3 ${
-                        isDarkMode ? 'bg-gray-700/70' : 'bg-gray-50/80'
-                      } backdrop-blur-sm rounded-lg text-sm border-l-4 border-orange-500`}
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <span className={isDarkMode ? 'text-gray-300' : 'text-gray-500'}>
-                        Issued: {cert.date}
-                      </span>
-                      <span className="text-orange-600 font-medium">
-                        ID: {cert.credentialId}
-                      </span>
-                    </motion.div>
-                  </div>
-                </div>
-                
-                <div className={`pt-4 border-t ${
-                  isDarkMode ? 'border-gray-700' : 'border-gray-200'
-                } mt-4`}>
-                  <motion.button
-                    className="w-full text-orange-600 group-hover:text-orange-500 transition-colors flex items-center justify-between gap-2 py-2"
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span className="font-medium">
-                      {cert.type === 'pdf' ? 'View Certificate' : 'View Credentials'}
-                    </span>
+                <motion.div
+                  className={`relative ${
+                    isDarkMode 
+                      ? 'bg-gradient-to-br from-gray-800/95 via-gray-900/90 to-black/95' 
+                      : 'bg-gradient-to-br from-white/95 via-white/90 to-blue-50/80'
+                  } backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-white/20 cursor-pointer transition-all duration-700`}
+                  whileHover={{ 
+                    rotateY: 2,
+                    rotateX: 2,
+                    boxShadow: "0 40px 100px -15px rgba(255, 103, 0, 0.25)"
+                  }}
+                  onClick={() => handleCertificateView(cert)}
+                >
+                  {/* Floating Background Elements */}
+                  <div className="absolute inset-0 overflow-hidden">
                     <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ 
-                        repeat: Infinity, 
-                        repeatType: "mirror",
-                        duration: 1.5,
-                        ease: "easeInOut"
+                      className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-r from-orange-400/10 to-pink-400/10 rounded-full blur-3xl"
+                      animate={{ 
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 180, 360]
                       }}
+                      transition={{ duration: 20, repeat: Infinity }}
+                    />
+                    <motion.div
+                      className="absolute -bottom-20 -left-20 w-48 h-48 bg-gradient-to-l from-purple-400/10 to-blue-400/10 rounded-full blur-3xl"
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        rotate: [360, 180, 0]
+                      }}
+                      transition={{ duration: 25, repeat: Infinity }}
+                    />
+                  </div>
+
+                  {/* Certificate Header */}
+                  <div className="relative p-8 pb-4">
+                    {/* Status Badge */}
+                    <div className="absolute top-6 right-6 flex items-center gap-2">
+                      {cert.type === 'pdf' && (
+                        <motion.div 
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 rounded-full text-emerald-600 text-sm font-medium backdrop-blur-sm"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Verified</span>
+                        </motion.div>
+                      )}
+                    </div>
+
+                    {/* Certificate Icon & Organization */}
+                    <div className="flex items-start gap-6 mb-6">
+                      <motion.div 
+                        className="p-4 rounded-2xl bg-gradient-to-br from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/25"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {cert.icon}
+                      </motion.div>
+                      
+                      <div className="flex-1">
+                        <motion.div
+                          className="inline-block px-4 py-2 bg-orange-500/10 text-orange-600 rounded-full text-sm font-semibold mb-3"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {cert.organization}
+                        </motion.div>
+                        
+                        <h3 className={`text-2xl lg:text-3xl font-bold leading-tight ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        } group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-500`}>
+                          {cert.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Certificate Details */}
+                  <div className="relative px-8 pb-8">
+                    {/* Credential Information */}
+                    <div className="space-y-4 mb-8">
+                      <motion.div 
+                        className={`p-5 rounded-2xl ${
+                          isDarkMode ? 'bg-gray-800/70' : 'bg-gray-50/80'
+                        } backdrop-blur-sm border border-white/10`}
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className={`text-sm font-medium ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                            }`}>
+                              Credential ID
+                            </p>
+                            <p className={`font-mono text-lg ${
+                              isDarkMode ? 'text-white' : 'text-gray-900'
+                            } select-all mt-1`}>
+                              {cert.credentialId}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className={`text-sm font-medium ${
+                              isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                            }`}>
+                              Issued
+                            </p>
+                            <p className={`text-lg font-semibold ${
+                              isDarkMode ? 'text-white' : 'text-gray-900'
+                            } mt-1`}>
+                              {cert.date}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Action Button */}
+                    <motion.button
+                      className="w-full py-4 px-6 bg-gradient-to-r from-orange-500/10 to-pink-500/10 hover:from-orange-500 hover:to-pink-500 border-2 border-orange-500/30 hover:border-transparent rounded-2xl text-orange-600 hover:text-white font-semibold transition-all duration-500 flex items-center justify-center gap-3 group/btn"
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <ChevronRight className="w-5 h-5" />
-                    </motion.div>
-                  </motion.button>
-                </div>
-                
-                {/* Hover indicator */}
-                <motion.div 
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-pink-500"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+                      <Eye className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
+                      <span>{cert.type === 'pdf' ? 'View Certificate' : 'View Credentials'}</span>
+                      <motion.div
+                        className="w-6 h-6 bg-orange-500/20 group-hover/btn:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                        whileHover={{ rotate: 180 }}
+                      >
+                        <ChevronRight className="w-3 h-3" />
+                      </motion.div>
+                    </motion.button>
+                  </div>
+
+                  {/* Interactive Border Effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-orange-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ 
+                      maskImage: 'linear-gradient(white, white), linear-gradient(white, white)',
+                      maskClip: 'padding-box, border-box',
+                      maskComposite: 'exclude'
+                    }}
+                  />
+
+                  {/* Holographic Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -skew-x-12 transition-opacity duration-700 pointer-events-none"
+                    animate={{ x: ["-100%", "300%"] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </div>
